@@ -1,0 +1,38 @@
+CREATE DATABASE aprovados;
+USE aprovados;
+CREATE TABLE tbl_alunos (
+id_aluno INT AUTO_INCREMENT PRIMARY KEY,
+nome_aluno VARCHAR(100),
+data_cadastro DATE,
+altura_aluno DECIMAL (10,1),
+fk_materia INT);
+CREATE TABLE tbl_materias (
+id_materia INT AUTO_INCREMENT PRIMARY KEY,
+nome_materia VARCHAR (500));
+
+
+ALTER TABLE tbl_alunos ADD CONSTRAINT FOREIGN KEY 
+(fk_materia) REFERENCES tbl_materias (id_materia);
+
+INSERT INTO tbl_materias (nome_materia) VALUES 
+('bancos de dados'),('logica de programação'),
+('matematica'),('corte e costura avançado');
+
+INSERT INTO tbl_alunos 
+(nome_aluno,altura_aluno, data_cadastro,fk_materia) VALUES
+('paulo','1.70','2024-06-20',1),
+('biaca','1.58','2024-05-19',1),
+('beatriz','1.95','2024-03-12',3),
+('gustavo','1.67','2024-06-20',1);*/
+
+UPDATE tbl_alunos SET nome_aluno = 'bruce wayne'
+WHERE id_aluno = 3;
+ALTER TABLE tbl_alunos 
+CHANGE data_cadastro data_matricula DATE;
+
+SELECT * FROM tbl_alunos;
+DELETE FROM tbl_alunos WHERE id_aluno = 5;
+SELECT * FROM tbl_alunos;
+SELECT tbl_alunos.nome_aluno,tbl_materias.nome_materia FROM tbl_alunos
+INNER JOIN tbl_materias ON fk_materia = id_materia ORDER BY nome_materia ;
+
